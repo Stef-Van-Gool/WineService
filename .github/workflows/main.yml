@@ -27,10 +27,10 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=miverboven_review-service-ex
 
       - name: Docker login
-        run: docker login -u ${{ secrets.r0740461 }} -p ${{ secrets.123456789 }}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.r0740461 }}/WineService:latest .
+        run: docker build -t ${{ secrets.DOCKER_USER }}/WineService:latest .
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.r0740461 }}/WineService:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/WineService:latest
