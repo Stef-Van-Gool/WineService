@@ -66,8 +66,8 @@ public class WineController {
         return retrievedWine;
     }
 
-    @DeleteMapping("/wines/name/{name}/country/{country}/region/{region}")
-    public ResponseEntity deleteWine(@PathVariable String name, @PathVariable String country, @PathVariable String region){
+    @DeleteMapping("/wines/name/{name}")
+    public ResponseEntity deleteWine(@PathVariable String name){
         Wine wine = wineRepository.findWineByName(name);
         if(wine!=null){
             wineRepository.delete(wine);
