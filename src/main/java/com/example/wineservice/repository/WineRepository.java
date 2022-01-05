@@ -10,5 +10,5 @@ public interface WineRepository extends MongoRepository<Wine, String> {
     List<Wine> findWinesByCountry(String country);
     List<Wine> findWinesByCountryAndRegion(String country, String region);
     List<Wine> findWinesByGrapeName(String grapeName);
-    Wine findWineByNameAndCountryAndRegion(String name, String country, String region);
+    Wine findWineByName(String name);
 }

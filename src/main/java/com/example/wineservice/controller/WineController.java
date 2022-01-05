@@ -40,9 +40,9 @@ public class WineController {
         return wineRepository.findWinesByGrapeName(grapeName);
     }
 
-    @GetMapping("/wines/name/{name}/country/{country}/region/{region}")
-    public Wine getWineByNameAndCountryAndRegion(@PathVariable String name, @PathVariable String country, @PathVariable String region){
-        return wineRepository.findWineByNameAndCountryAndRegion(name, country, region);
+    @GetMapping("/wines/name/{name}")
+    public Wine getWineByNameAndCountryAndRegion(@PathVariable String name){
+        return wineRepository.findWineByName(name);
     }
 
     @PostMapping("/wines")
@@ -53,7 +53,7 @@ public class WineController {
 
     @PutMapping("/wines")
     public Wine updateWine(@RequestBody Wine updatedWine){
-        Wine retrievedWine = wineRepository.findWineByNameAndCountryAndRegion(updatedWine.getName(), updatedWine.getCountry(), updatedWine.getRegion());
+        Wine retrievedWine = wineRepository.findWineByName(updatedWine.getName());
 
         retrievedWine.setScore(updatedWine.getScore());
 
@@ -63,7 +63,7 @@ public class WineController {
 
     @DeleteMapping("/wines/name/{name}/country/{country}/region/{region}")
     public ResponseEntity deleteWine(@PathVariable String name, @PathVariable String country, @PathVariable String region){
-        Wine wine = wineRepository.findWineByNameAndCountryAndRegion(name, country, region);
+        Wine wine = wineRepository.findWineByName(name);
         if(wine!=null){
             wineRepository.delete(wine);
             return ResponseEntity.ok().build();
