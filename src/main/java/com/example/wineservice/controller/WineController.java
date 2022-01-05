@@ -22,7 +22,7 @@ public class WineController {
             wineRepository.save(new Wine("Nebukadnesar 2018", "Western Cape", "Zuid-Afrika", 4.5, "Merlot"));
             wineRepository.save(new Wine("Aria di Caiarossa", "Toscane", "Italië", 4.1, "Sangiovese"));
         }
-        System.out.println("Wines test: " +wineRepository.findWinesByCountry("Frankrijk").size());
+        //System.out.println("Wines test: " +wineRepository.findWinesByCountry("Frankrijk").size());
     }
 
     @GetMapping("/wines/country/{country}")
