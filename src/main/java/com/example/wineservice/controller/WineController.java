@@ -45,6 +45,11 @@ public class WineController {
         return wineRepository.findWineByName(name);
     }
 
+    @GetMapping("/wines")
+    public List<Wine> getWines(){
+        return wineRepository.findAll();
+    }
+
     @PostMapping("/wines")
     public Wine addWine(@RequestBody Wine wine){
         wineRepository.save(wine);
