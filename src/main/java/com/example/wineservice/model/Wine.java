@@ -2,7 +2,7 @@ package com.example.wineservice.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "wines")
+@Document(collection = "wines")
 public class Wine {
     //Variables
     @Id
