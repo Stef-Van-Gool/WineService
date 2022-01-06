@@ -48,7 +48,7 @@ public class WineControllerIntegrationTests {
 
     //Get tests
     @Test
-    public void givenWine_whenGetWineByCountry_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByCountry_thenReturnJsonWines() throws Exception{
         List<Wine> wineList = new ArrayList<>();
         wineList.add(wine1);
         wineList.add(wine11);
@@ -71,7 +71,7 @@ public class WineControllerIntegrationTests {
     }
 
     @Test
-    public void givenWine_whenGetWineByCountryAndRegion_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByCountryAndRegion_thenReturnJsonWines() throws Exception{
         List<Wine> wineList = new ArrayList<>();
         wineList.add(wine1);
 
@@ -87,7 +87,7 @@ public class WineControllerIntegrationTests {
     }
 
      @Test
-     public void givenWine_whenGetWineByGrapeName_thenReturnJsonWines() throws Exception{
+     void givenWine_whenGetWineByGrapeName_thenReturnJsonWines() throws Exception{
          List<Wine> wineList = new ArrayList<>();
          wineList.add(wine1);
 
@@ -103,7 +103,7 @@ public class WineControllerIntegrationTests {
      }
 
      @Test
-     public void givenWine_whenGetWineByName_thenReturnJsonWine() throws Exception{
+     void givenWine_whenGetWineByName_thenReturnJsonWine() throws Exception{
          mockMvc.perform(get("/wines/name/{name}", "Testwine2"))
                  .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                  .andExpect(status().isOk())
@@ -115,7 +115,7 @@ public class WineControllerIntegrationTests {
      }
 
      @Test
-     public void givenWine_whenGetWines_thenReturnJsonWines() throws Exception{
+     void givenWine_whenGetWines_thenReturnJsonWines() throws Exception{
          List<Wine> wineList = new ArrayList<>();
          wineList.add(wine1);
          wineList.add(wine11);
@@ -146,7 +146,7 @@ public class WineControllerIntegrationTests {
 
      //Post test
     @Test
-    public void whenPostWine_thenReturnJsonWine() throws Exception{
+    void whenPostWine_thenReturnJsonWine() throws Exception{
         Wine wine3 = new Wine( "Testwine3",  "Testregion3", "Testcountry3", 5.0, "Testgrape3");
 
         mockMvc.perform(post("/wines")
@@ -163,7 +163,7 @@ public class WineControllerIntegrationTests {
 
     //Put test
     @Test
-    public void givenWine_whenPutWine_thenReturnJsonWine() throws Exception{
+    void givenWine_whenPutWine_thenReturnJsonWine() throws Exception{
         Wine updatedWine = new Wine("Testwine1", "Testregion1", "Testcountry1", 1.0, "Testgrape1");
 
         mockMvc.perform(put("/wines")
@@ -180,14 +180,14 @@ public class WineControllerIntegrationTests {
 
     //Delete tests
     @Test
-    public void givenWine_whenDeleteWine_thenStatusOk() throws Exception{
+    void givenWine_whenDeleteWine_thenStatusOk() throws Exception{
         mockMvc.perform(delete("/wines/name/{name}", "Testwine2")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void givenWine_whenDeleteWine_thenStatusNotFound() throws Exception{
+    void givenWine_whenDeleteWine_thenStatusNotFound() throws Exception{
         mockMvc.perform(delete("/wines/name/{name}", "Testwine999")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());

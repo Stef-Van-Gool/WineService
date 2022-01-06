@@ -33,7 +33,7 @@ public class WineControllerUnitTests {
 
     //Get tests
     @Test
-    public void givenWine_whenGetWineByCountry_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByCountry_thenReturnJsonWines() throws Exception{
         Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4, "Testgrape1");
         Wine wine11 = new Wine( "Testwine1.1",  "Testregion5", "Testcountry1", 3, "Testgrape2");
 
@@ -61,7 +61,7 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    public void givenWine_whenGetWineByCountryAndRegion_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByCountryAndRegion_thenReturnJsonWines() throws Exception{
         Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4, "Testgrape1");
 
         List<Wine> wineList = new ArrayList<>();
@@ -81,7 +81,7 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    public void givenWine_whenGetWineByGrapeName_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByGrapeName_thenReturnJsonWines() throws Exception{
         Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4, "Testgrape1");
 
         List<Wine> wineList = new ArrayList<>();
@@ -101,7 +101,7 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    public void givenWine_whenGetWineByName_thenReturnJsonWine() throws Exception{
+    void givenWine_whenGetWineByName_thenReturnJsonWine() throws Exception{
         Wine wine2 = new Wine( "Testwine2",  "Testregion2", "Testcountry2", 4.5, "Testgrape2");
 
         given(wineRepository.findWineByName("Testwine2")).willReturn(wine2);
@@ -117,7 +117,7 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    public void givenWine_whenGetWines_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWines_thenReturnJsonWines() throws Exception{
         Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4, "Testgrape1");
         Wine wine11 = new Wine( "Testwine1.1",  "Testregion5", "Testcountry1", 3, "Testgrape2");
         Wine wine2 = new Wine( "Testwine2",  "Testregion2", "Testcountry2", 4.5, "Testgrape2");
@@ -154,7 +154,7 @@ public class WineControllerUnitTests {
 
     //Post test
     @Test
-    public void whenPostWine_thenReturnJsonWine() throws Exception{
+    void whenPostWine_thenReturnJsonWine() throws Exception{
         Wine wine3 = new Wine( "Testwine3",  "Testregion3", "Testcountry3", 5, "Testgrape3");
 
         mockMvc.perform(post("/wines")
@@ -171,7 +171,7 @@ public class WineControllerUnitTests {
 
     //Put test
     @Test
-    public void givenWine_whenPutWine_thenReturnJsonWine() throws Exception{
+    void givenWine_whenPutWine_thenReturnJsonWine() throws Exception{
         Wine wine4 = new Wine("Testwine1", "Testregion1", "Testcountry1", 5, "Testgrape1");
 
         given(wineRepository.findWineByName("Testwine1")).willReturn(wine4);
@@ -192,7 +192,7 @@ public class WineControllerUnitTests {
 
     //Delete tests
     @Test
-    public void givenWine_whenDeleteWine_thenStatusOk() throws Exception{
+    void givenWine_whenDeleteWine_thenStatusOk() throws Exception{
         Wine wineToBeDeleted = new Wine("Testwine999", "Testregion999", "Testcountry999", 1, "Testgrape999");
 
         given(wineRepository.findWineByName("Testwine999")).willReturn(wineToBeDeleted);
@@ -203,7 +203,7 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    public void givenWine_whenDeleteWine_thenStatusNotFound() throws Exception{
+    void givenWine_whenDeleteWine_thenStatusNotFound() throws Exception{
         given(wineRepository.findWineByName("Testwine888")).willReturn(null);
 
         mockMvc.perform(delete("/wines/name/{name}", "Testwine888")
