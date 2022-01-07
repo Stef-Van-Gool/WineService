@@ -30,6 +30,7 @@ public class WineControllerIntegrationTests {
     private Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4.0, "Testgrape1");
     private Wine wine11 = new Wine( "Testwine1.1",  "Testregion5", "Testcountry1", 3.0, "Testgrape2");
     private Wine wine2 = new Wine( "Testwine2",  "Testregion2", "Testcountry2", 4.5, "Testgrape2");
+    private Wine wine999 = new Wine( "Testwine999",  "Testregion999", "Testcountry999", 4.5, "Testgrape999");
 
     @BeforeEach
     public void beforeAllTests(){
@@ -37,6 +38,7 @@ public class WineControllerIntegrationTests {
         wineRepository.save(wine1);
         wineRepository.save(wine11);
         wineRepository.save(wine2);
+        wineRepository.save(wine999);
     }
 
     @AfterEach
@@ -120,11 +122,12 @@ public class WineControllerIntegrationTests {
          wineList.add(wine1);
          wineList.add(wine11);
          wineList.add(wine2);
+         wineList.add(wine999);
 
          mockMvc.perform(get("/wines"))
                  .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                  .andExpect(status().isOk())
-                 .andExpect(jsonPath("$", hasSize(3)))
+                 .andExpect(jsonPath("$", hasSize(4)))
                  .andExpect(jsonPath("$[0].name", is("Testwine1")))
                  .andExpect(jsonPath("$[0].region", is("Testregion1")))
                  .andExpect(jsonPath("$[0].country", is("Testcountry1")))
@@ -141,7 +144,13 @@ public class WineControllerIntegrationTests {
                  .andExpect(jsonPath("$[2].region", is("Testregion2")))
                  .andExpect(jsonPath("$[2].country", is("Testcountry2")))
                  .andExpect(jsonPath("$[2].score", is(4.5)))
-                 .andExpect(jsonPath("$[2].grapeName", is("Testgrape2")));
+                 .andExpect(jsonPath("$[2].grapeName", is("Testgrape2")))
+
+                 .andExpect(jsonPath("$[3].name", is("Testwine999")))
+                 .andExpect(jsonPath("$[3].region", is("Testregion999")))
+                 .andExpect(jsonPath("$[3].country", is("Testcountry999")))
+                 .andExpect(jsonPath("$[3].score", is(4.5)))
+                 .andExpect(jsonPath("$[3].grapeName", is("Testgrape999")));
      }
 
      //Post test
@@ -181,14 +190,14 @@ public class WineControllerIntegrationTests {
     //Delete tests
     @Test
     void givenWine_whenDeleteWine_thenStatusOk() throws Exception{
-        mockMvc.perform(delete("/wines/name/{name}", "Testwine2")
+        mockMvc.perform(delete("/wines/name/{name}", "Testwine999")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     void givenWine_whenDeleteWine_thenStatusNotFound() throws Exception{
-        mockMvc.perform(delete("/wines/name/{name}", "Testwine999")
+        mockMvc.perform(delete("/wines/name/{name}", "Testwine888")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
