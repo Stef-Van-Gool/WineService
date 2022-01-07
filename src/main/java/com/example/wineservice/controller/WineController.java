@@ -30,9 +30,9 @@ public class WineController {
         return wineRepository.findWinesByCountry(country);
     }
 
-    @GetMapping("/wines/country/{country}/region/{region}")
-    public List<Wine> getWinesByCountryAndRegion(@PathVariable String country, @PathVariable String region){
-        return wineRepository.findWinesByCountryAndRegion(country, region);
+    @GetMapping("/wines/region/{region}")
+    public List<Wine> getWinesByCountryAndRegion(@PathVariable String region){
+        return wineRepository.findWinesByRegion(region);
     }
 
     @GetMapping("/wines/grape/{grapeName}")

@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface WineRepository extends MongoRepository<Wine, String> {
     List<Wine> findWinesByCountry(String country);
-    List<Wine> findWinesByCountryAndRegion(String country, String region);
+    List<Wine> findWinesByRegion(String region);
     List<Wine> findWinesByGrapeName(String grapeName);
     Wine findWineByName(String name);
 }

@@ -61,15 +61,15 @@ public class WineControllerUnitTests {
     }
 
     @Test
-    void givenWine_whenGetWineByCountryAndRegion_thenReturnJsonWines() throws Exception{
+    void givenWine_whenGetWineByRegion_thenReturnJsonWines() throws Exception{
         Wine wine1 = new Wine( "Testwine1",  "Testregion1", "Testcountry1", 4, "Testgrape1");
 
         List<Wine> wineList = new ArrayList<>();
         wineList.add(wine1);
 
-        given(wineRepository.findWinesByCountryAndRegion("Testcountry1", "Testregion1")).willReturn(wineList);
+        given(wineRepository.findWinesByRegion("Testregion1")).willReturn(wineList);
 
-        mockMvc.perform(get("/wines/country/{country}/region/{region}", "Testcountry1", "Testregion1"))
+        mockMvc.perform(get("/wines/region/{region}", "Testregion1"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
